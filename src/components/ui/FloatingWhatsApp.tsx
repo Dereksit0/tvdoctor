@@ -8,17 +8,13 @@ export default function FloatingWhatsApp() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
-      className="fixed bottom-6 right-6 z-[100] flex items-center gap-3"
-      style={{ direction: 'rtl' }}
-    >
-      {/* Tooltip */}
+    <div className="fixed bottom-6 right-6 z-[100]">
+      {/* Tooltip — posición absoluta para no desplazar el botón */}
       <motion.div
         initial={{ opacity: 0, x: 10 }}
         animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : 10 }}
         transition={{ duration: 0.2 }}
-        className="bg-white text-black text-sm font-semibold font-sans px-3 py-1.5 rounded-full shadow-lg pointer-events-none"
-        style={{ direction: 'ltr' }}
+        className="absolute right-full top-1/2 -translate-y-1/2 mr-3 whitespace-nowrap bg-white text-black text-sm font-semibold font-sans px-3 py-1.5 rounded-full shadow-lg pointer-events-none"
       >
         ¡Escríbenos!
       </motion.div>
