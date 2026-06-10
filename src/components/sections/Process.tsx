@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { staggerContainer, fadeInUp } from '@/lib/animations';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { PROCESS_STEPS } from '@/lib/constants';
+import { IconShield } from '@/components/ui/Icons';
 
 export default function Process() {
   return (
@@ -63,9 +64,10 @@ export default function Process() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.6, type: 'spring', stiffness: 260 }}
-                  className="mt-3 inline-flex items-center gap-1 bg-brand-red text-white text-xs font-semibold font-sans px-3 py-1.5 rounded-full tracking-wide"
+                  className="mt-3 inline-flex items-center gap-1.5 bg-brand-red text-white text-xs font-semibold font-sans px-3 py-1.5 rounded-full tracking-wide"
                 >
-                  🛡 3–6 MESES DE GARANTÍA
+                  <IconShield className="w-3.5 h-3.5" />
+                  3–6 MESES DE GARANTÍA
                 </motion.span>
               )}
             </motion.div>

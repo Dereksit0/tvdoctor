@@ -7,59 +7,81 @@ import { WA_GENERIC } from '@/lib/constants';
 
 type Brand = {
   name: string;
-  slug: string | null;
-  iconColor: string;
-  textColor: string;
-  bgHover: string;
+  /** Texto del wordmark (puede diferir del nombre mostrado debajo). */
+  wordmark: string;
+  color: string;
+  /** Clases extra de estilo tipográfico para imitar el logotipo. */
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 const BRANDS: Brand[] = [
-  { name: 'Samsung',   slug: 'samsung',   iconColor: 'ffffff', textColor: '#1428A0', bgHover: 'rgba(20,40,160,0.15)' },
-  { name: 'Sony',      slug: 'sony',      iconColor: 'ffffff', textColor: '#FFFFFF', bgHover: 'rgba(255,255,255,0.1)' },
-  { name: 'LG',        slug: 'lg',        iconColor: 'ffffff', textColor: '#A50034', bgHover: 'rgba(165,0,52,0.15)'   },
-  { name: 'Panasonic', slug: 'panasonic', iconColor: 'ffffff', textColor: '#0A3EA0', bgHover: 'rgba(10,62,160,0.15)'  },
-  { name: 'Philips',   slug: 'philips',   iconColor: 'ffffff', textColor: '#0B5ED7', bgHover: 'rgba(11,94,215,0.15)'  },
-  { name: 'Sharp',     slug: 'sharp',     iconColor: 'ffffff', textColor: '#CCCCCC', bgHover: 'rgba(200,200,200,0.1)' },
-  { name: 'TCL',       slug: 'tcl',       iconColor: 'ffffff', textColor: '#E4002B', bgHover: 'rgba(228,0,43,0.15)'   },
-  { name: 'Hisense',   slug: 'hisense',   iconColor: 'ffffff', textColor: '#009FE3', bgHover: 'rgba(0,159,227,0.15)'  },
+  {
+    name: 'Samsung',
+    wordmark: 'SAMSUNG',
+    color: '#FFFFFF',
+    className: 'font-sans font-bold',
+    style: { letterSpacing: '0.12em', fontSize: '1.25rem' },
+  },
+  {
+    name: 'Sony',
+    wordmark: 'SONY',
+    color: '#FFFFFF',
+    className: 'font-sans font-extrabold',
+    style: { letterSpacing: '0.22em', fontSize: '1.4rem' },
+  },
+  {
+    name: 'LG',
+    wordmark: 'LG',
+    color: '#FFFFFF',
+    className: 'font-sans font-black',
+    style: { letterSpacing: '0.04em', fontSize: '1.9rem' },
+  },
+  {
+    name: 'Panasonic',
+    wordmark: 'Panasonic',
+    color: '#FFFFFF',
+    className: 'font-sans font-bold italic',
+    style: { letterSpacing: '0.01em', fontSize: '1.4rem' },
+  },
+  {
+    name: 'Philips',
+    wordmark: 'PHILIPS',
+    color: '#FFFFFF',
+    className: 'font-sans font-semibold',
+    style: { letterSpacing: '0.18em', fontSize: '1.3rem' },
+  },
+  {
+    name: 'Sharp',
+    wordmark: 'SHARP',
+    color: '#FFFFFF',
+    className: 'font-sans font-black italic',
+    style: { letterSpacing: '0.05em', fontSize: '1.45rem' },
+  },
+  {
+    name: 'TCL',
+    wordmark: 'TCL',
+    color: '#FFFFFF',
+    className: 'font-sans font-black',
+    style: { letterSpacing: '0.1em', fontSize: '1.85rem' },
+  },
+  {
+    name: 'Hisense',
+    wordmark: 'Hisense',
+    color: '#FFFFFF',
+    className: 'font-sans font-bold',
+    style: { letterSpacing: '0.02em', fontSize: '1.5rem' },
+  },
 ];
 
 function BrandLogo({ brand }: { brand: Brand }) {
-  if (!brand.slug) {
-    return (
-      <span
-        className="font-sans font-black text-2xl select-none"
-        style={{ color: brand.textColor }}
-      >
-        {brand.name}
-      </span>
-    );
-  }
-
   return (
-    <div className="flex flex-col items-center gap-3">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://cdn.simpleicons.org/${brand.slug}/${brand.iconColor}`}
-        alt={`${brand.name} logo`}
-        width={52}
-        height={52}
-        className="object-contain"
-        style={{ filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.1))' }}
-        onError={(e) => {
-          const img = e.currentTarget;
-          img.style.display = 'none';
-          const fallback = img.nextElementSibling as HTMLElement | null;
-          if (fallback) fallback.style.display = 'block';
-        }}
-      />
-      <span
-        className="hidden font-sans font-black text-xl select-none"
-        style={{ color: brand.textColor }}
-      >
-        {brand.name}
-      </span>
-    </div>
+    <span
+      className={`select-none leading-none ${brand.className ?? ''}`}
+      style={{ color: brand.color, ...brand.style }}
+    >
+      {brand.wordmark}
+    </span>
   );
 }
 
@@ -97,8 +119,10 @@ export default function Brands() {
               scale: 1.03,
             }}
           >
-            <BrandLogo brand={brand} />
-            <span className="mt-3 font-sans text-xs text-brand-gray/50 group-hover:text-brand-gray/80 transition-colors tracking-wide">
+            <div className="flex items-center justify-center h-12">
+              <BrandLogo brand={brand} />
+            </div>
+            <span className="mt-4 font-sans text-xs text-brand-gray/50 group-hover:text-brand-gray/80 transition-colors tracking-wide">
               {brand.name}
             </span>
           </motion.div>

@@ -4,6 +4,7 @@ import ValueProposition from '@/components/sections/ValueProposition';
 import Services from '@/components/sections/Services';
 import Technologies from '@/components/sections/Technologies';
 import Brands from '@/components/sections/Brands';
+import CoverageMap from '@/components/sections/CoverageMap';
 import Process from '@/components/sections/Process';
 import BeforeAfter from '@/components/sections/BeforeAfter';
 import Testimonials from '@/components/sections/Testimonials';
@@ -22,6 +23,7 @@ export default function Home() {
         <Services />
         <Technologies />
         <Brands />
+        <CoverageMap />
         <Process />
         <BeforeAfter />
         <Testimonials />

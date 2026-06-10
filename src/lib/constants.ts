@@ -10,19 +10,30 @@ export const MAPS_URL = 'https://maps.app.goo.gl/Tz3zi8ne7sLKjHnF8';
 export const MAPS_EMBED =
   'https://maps.google.com/maps?q=TV+Doctor+Puebla+Mexico&output=embed';
 
+// Dirección del centro de servicio (recolección y entrega).
+export const SHOP_ADDRESS =
+  'Antiguo Camino Real a Cholula 4219, Camino Real a Cholula, 72837 Heroica Puebla de Zaragoza, Pue.';
+// Coordenadas del centro de la zona de cobertura.
+// AJUSTA estos valores si el pin no cae exactamente sobre el local.
+export const SHOP_COORDS = { lat: 19.047733, lng: -98.257709 };
+// Radio (en km) dentro del cual la recolección y entrega es GRATIS.
+export const FREE_PICKUP_RADIUS_KM = 20;
+export const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${SHOP_COORDS.lat},${SHOP_COORDS.lng}`;
+
 export const NAV_LINKS = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Marcas', href: '#marcas' },
+  { label: 'Cobertura', href: '#cobertura' },
   { label: 'Garantía', href: '#garantia' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
 export const TRUST_BADGES = [
-  { icon: '✓', text: 'Diagnóstico gratuito' },
-  { icon: '🛡', text: '3 a 6 meses de garantía' },
-  { icon: '🏠', text: 'Servicio a domicilio' },
-  { icon: '⚡', text: 'Presupuesto sin costo' },
-];
+  { icon: 'check', text: 'Diagnóstico gratuito' },
+  { icon: 'shield', text: '3 a 6 meses de garantía' },
+  { icon: 'home', text: 'Servicio a domicilio' },
+  { icon: 'bolt', text: 'Presupuesto sin costo' },
+] as const;
 
 export type ValueProp = {
   number: string;

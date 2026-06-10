@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '@/lib/animations';
 import { WA_DIAGNOSTIC, TRUST_BADGES } from '@/lib/constants';
+import { ICONS, IconBolt } from '@/components/ui/Icons';
 
 const PARTICLES = [
   { id: 1, top: '14%', left: '8%',  size: 3, duration: '6.0s', delay: '0.0s' },
@@ -80,7 +81,8 @@ export default function Hero() {
             className="mb-6"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-red/60 bg-brand-red/10 px-4 py-1.5 text-xs font-semibold font-sans tracking-widest text-brand-red-light uppercase">
-              ⚡ Servicio a domicilio disponible
+              <IconBolt className="w-3.5 h-3.5" />
+              Servicio a domicilio disponible
             </span>
           </motion.div>
 
@@ -143,15 +145,18 @@ export default function Hero() {
             className="mt-10 border-t border-brand-red/30 pt-7"
           >
             <div className="flex flex-wrap gap-x-6 gap-y-3">
-              {TRUST_BADGES.map((badge) => (
-                <div
-                  key={badge.text}
-                  className="flex items-center gap-2 text-sm font-sans text-brand-gray"
-                >
-                  <span className="text-brand-red-light">{badge.icon}</span>
-                  <span>{badge.text}</span>
-                </div>
-              ))}
+              {TRUST_BADGES.map((badge) => {
+                const Icon = ICONS[badge.icon];
+                return (
+                  <div
+                    key={badge.text}
+                    className="flex items-center gap-2 text-sm font-sans text-brand-gray"
+                  >
+                    <Icon className="w-4 h-4 text-brand-red-light shrink-0" />
+                    <span>{badge.text}</span>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
